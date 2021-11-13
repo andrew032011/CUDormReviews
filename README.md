@@ -6,8 +6,6 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Available Scripts
 
-In the project
-
 ### `yarn start`
 
 Runs the app in the development mode.\
