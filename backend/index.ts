@@ -1,7 +1,7 @@
 import admin from 'firebase-admin';
 import express from 'express';
 
-const serviceAccount = require("/Users/adamcahall/Documents/GitHub/cudormreviews/backend/service-account.json");
+const serviceAccount = require("../backend/service-account.json");
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount)
 });
