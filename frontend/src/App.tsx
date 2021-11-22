@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import SearchBar from './SearchBar';
 import DormPage from './DormPage';
+import HomePage from './HomePage';
 
 // To be used by other files
 export type ReviewWithID = {
@@ -21,6 +22,7 @@ export type ReviewWithID = {
 function App() {
   const [review, setReview] = useState<ReviewWithID[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
+  const [dormName, setDormName] = useState("");
 
   return (
     <div className="App">
@@ -30,11 +32,15 @@ function App() {
           searchQuery={searchQuery}
           handleFilterTextChange={setSearchQuery}
         />
-        <DormPage
-          // The reviewData will only be the data for the particular dorm from Firebase; we still need to make a way to extract that from the search term
-          // Replace this below with the "review" state declared above; this is just testing data for now
-          reviewData={[{cleanliness: 5, convenience: 2, lounges: 3, noise: 5, quality: 3, social: 2, year: 1, review: "", id: ""}, {cleanliness: 2, convenience: 5, lounges: 4, noise: 4, quality: 5, social: 1, year: 1, review: "", id: ""}]}
+        <HomePage
           searchQuery={searchQuery}
+          handleClick={setDormName}
+        />
+        <DormPage
+          // The reviewData will only be the data for the particular dorm from Firebase; we still need to make a way to extract that from the search term.  For now the same data will display on all dorms
+          // Replace this below with the "review" state declared above; this is just testing data for now
+          reviewData={[{ cleanliness: 5, convenience: 2, lounges: 3, noise: 5, quality: 3, social: 2, year: 1, review: "", id: "" }, { cleanliness: 2, convenience: 5, lounges: 4, noise: 4, quality: 5, social: 1, year: 1, review: "", id: "" }]}
+          dormName={dormName}
         />
       </header>
     </div>
@@ -44,7 +50,7 @@ function App() {
 export default App;
 
 // BEGIN HARDCODED DATA
-type Dorm = {
+export type Dorm = {
   singles: boolean;
   doubles: boolean;
   triples: boolean;
@@ -153,9 +159,11 @@ const cascadilla: Dorm = {
 }
 
 export const DormMap = new Map([
-  ["mews", mews],
-  ["ganedago", ganedago],
-  ["donlon", donlon],
-  ["becker", becker],
-  ["cascadilla", cascadilla]
+  ["Mews Hall", mews],
+  ["Ganędagǫ: Hall", ganedago],
+  ["Mary Donlon Hall", donlon],
+  ["Carl Becker House", becker],
+  ["Cascadilla Hall", cascadilla]
 ])
+
+export const DormArray: Array<Dorm> = [mews, ganedago, donlon, becker, cascadilla];
