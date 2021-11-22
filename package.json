@@ -1,12 +1,17 @@
 {
-    "scripts": {
-        "server": "cd backend && yarn start",
-        "frontend": "cd frontend && yarn start",
-        "start": "concurrently \"yarn server\" \"yarn frontend\" "
-    },
-    "dependencies": {
-        "concurrently": "^6.4.0",
-        "firebase": "^9.5.0",
-        "firebase-admin": "^10.0.0"
-    }
+  "name": "cudormreviews",
+  "private": true,
+  "workspaces": ["backend", "frontend"],
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+
+  "scripts": {
+    "server": "cd backend && yarn start",
+    "frontend": "cd frontend && yarn start",
+    "start": "concurrently \"yarn server\" \"yarn frontend\" "
+},
+"dependencies": {
+    "concurrently": "^6.4.0"
+}
 }
