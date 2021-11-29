@@ -4,6 +4,8 @@ import './App.css';
 import SearchBar from './SearchBar';
 import DormPage from './DormPage';
 import HomePage from './HomePage';
+import EditReviewsAuth from './EditReviewsAuth';
+import Authenticated from './Authenticated';
 
 // To be used by other files
 export type ReviewWithID = {
@@ -40,15 +42,31 @@ function App() {
           // The reviewData will only be the data for the particular dorm from Firebase; we still need to make a way to extract that from the search term.  For now the same data will display on all dorms
           // Replace this below with the "review" state declared above; this is just testing data for now
           reviewData={[
-            { cleanliness: 5, convenience: 2, lounges: 5, noise: 5, quality: 3, social: 2, year: 1, review: 
-              "So it was ok because I didn't like it that much but I have high standards but it was ok so I'm going to give it a mediocre rating.", id: "" }, 
-            { cleanliness: 2, convenience: 5, lounges: 4, noise: 4, quality: 5, social: 1, year: 1, review: 
-              "Literally the best dorm ever OMG so good so good so good so good I really like it so good so good so good so good so good.", id: "" },
-            { cleanliness: 2, convenience: 2, lounges: 4, noise: 4, quality: 1, social: 1, year: 1, review: 
-              "Worst dorm ever.", id: "" }
-            ]}
+            {
+              cleanliness: 5, convenience: 2, lounges: 5, noise: 5, quality: 3, social: 2, year: 1, review:
+                "So it was ok because I didn't like it that much but I have high standards but it was ok so I'm going to give it a mediocre rating.", id: ""
+            },
+            {
+              cleanliness: 2, convenience: 5, lounges: 4, noise: 4, quality: 5, social: 1, year: 1, review:
+                "Literally the best dorm ever OMG so good so good so good so good I really like it so good so good so good so good so good.", id: ""
+            },
+            {
+              cleanliness: 2, convenience: 2, lounges: 4, noise: 4, quality: 1, social: 1, year: 1, review:
+                "Worst dorm ever.", id: ""
+            }
+          ]}
           dormName={dormName}
         />
+        <Authenticated>
+          <EditReviewsAuth
+            reviewData={[
+              {
+                cleanliness: 5, convenience: 2, lounges: 5, noise: 5, quality: 3, social: 2, year: 1, review:
+                  "This will be made up with reviews corresponding to the user's ID.  Then, the user will be able to edit these reviews.  So, we will have to ensure that a unique ID is created for each review.", id: "insertIDHere"
+              }
+            ]}
+          />
+        </Authenticated>
       </header>
     </div>
   );
