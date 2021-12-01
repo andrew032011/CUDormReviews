@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { DormMap, ReviewWithID } from './App'
 import ReviewComponent from './ReviewComponent'
 import {getAuth} from "firebase/auth"
+import CreateReview from './CreateReview';
 
 // This component will simply take in the name of the dorm that the user clicked on to display information about the dorm.
 // This component will also take in the overall reviews for the dorm
