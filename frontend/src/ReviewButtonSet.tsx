@@ -1,5 +1,5 @@
 import { useState, ChangeEvent } from 'react';
-
+// Not finished or being used right now, but maybe in future
 type Prop = {
 
 }

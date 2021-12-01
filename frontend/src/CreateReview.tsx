@@ -1,7 +1,7 @@
 import { useState, ChangeEvent } from 'react';
-import ReviewButtonSet from './ReviewButtonSet';
 import axios from "axios";
 import styles from './createreview.module.css';
+// import ReviewButtonSet from './ReviewButtonSet';
 
 type Prop = {
     dormName: string
@@ -25,27 +25,6 @@ const CreateReview = ({dormName}: Prop) => {
     const handleYearChange = (event: ChangeEvent<HTMLInputElement>) => {
       const y = event.currentTarget.value;
       setYear(y);
-    };
-
-    const createReview = async () => {
-     const newReview = {cleanliness, convenience, lounges, noise, quality, social , year, review};
-     const { data } = await axios.post<string>('/createReview/Mews Hall', newReview);
-    }
-
-    const dropDown = (title: string, category: string, change: (event: ChangeEvent<HTMLSelectElement>) => void ) => {
-        return(
-        <div>
-        <span>{title}
-        <select value = {category} onChange={change}>
-            <option value = "1">1</option>
-            <option value = "2">2</option>
-            <option value = "3">3</option>
-            <option value = "4">4</option>
-            <option value = "5">5</option>
-        </select>
-        </span>
-        <br></br>
-        </div>);
     };
 
     const handleSocialChange = (event: ChangeEvent<HTMLSelectElement>) => {
@@ -77,10 +56,33 @@ const CreateReview = ({dormName}: Prop) => {
         const q = event.currentTarget.value;
         setQuality(q);
     };
+    
+    // Creates new review in database in current dorm's collection with post request 
+    const createReview = async (dormName: string) => {
+        const newReview = {cleanliness, convenience, lounges, noise, quality, social , year, review};
+        const { data } = await axios.post<string>(`/createReview/${dormName}`, newReview);
+    };
+   
+    // Creates a drop down menu for a given review category
+    const dropDown = (title: string, category: string, change: (event: ChangeEvent<HTMLSelectElement>) => void ) => {
+        return (
+        <div>
+        <span>{title}
+        <select value = {category} onChange={change}>
+            <option value = "1">1</option>
+            <option value = "2">2</option>
+            <option value = "3">3</option>
+            <option value = "4">4</option>
+            <option value = "5">5</option>
+        </select>
+        </span>
+        <br></br>
+        </div>);
+    };
 
     return (
     <div className = {styles.createreview}>
-        <h3 className = {styles.centered}>Leave a Review</h3>
+        <h3>Leave a Review</h3>
         <textarea
             placeholder="Enter review here..."
             value={review}
@@ -116,7 +118,9 @@ const CreateReview = ({dormName}: Prop) => {
             console.log(noise)
             console.log(lounges)
             console.log(quality)
-            createReview();
+
+            createReview(dormName);
+
             setReview("");
             setYear("");
             setSocial("");
@@ -125,10 +129,9 @@ const CreateReview = ({dormName}: Prop) => {
             setNoise("");
             setLounges("");
             setQuality("")
-      }
-      }>
-     Submit
-     </button>
+            }}>
+            Submit
+        </button>
     </div>)}
     
 export default CreateReview;
