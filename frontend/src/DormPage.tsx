@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { DormMap, ReviewWithID } from './App'
+import CreateReview from './CreateReview';
 
 // This component will simply take in the name of the dorm that the user clicked on to display information about the dorm.
 // This component will also take in the overall reviews for the dorm
@@ -42,6 +43,7 @@ const DormPage = ({ reviewData, dormName }: Props) => {
           <p>Noise: {reviewData.reduce((sum, curr) => sum + curr.noise, 0) / reviewData.length}</p>
           <p>Lounges: {reviewData.reduce((sum, curr) => sum + curr.lounges, 0) / reviewData.length}</p>
           <p>Quality/Appearance: {reviewData.reduce((sum, curr) => sum + curr.quality, 0) / reviewData.length}</p>
+          <CreateReview dormName = {dormName}></CreateReview>
         </div> : <p></p>}
     </div>
   )

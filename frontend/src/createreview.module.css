@@ -1,0 +1,25 @@
+.textbox {
+    height: 100px;
+    width: 200px;
+    /* text-align: center; */
+}
+
+.createreview {
+    background-color: white;
+    color: black;
+    font-family: Georgia;
+    /* font-size:smaller; */
+    /* width: 400px; */
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-style: solid;
+    /* text-align: left; */
+    border-width: 10px;
+    word-wrap: break-word;
+}
+
+.centered {
+    text-align: center;
+}
