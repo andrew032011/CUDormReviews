@@ -8,14 +8,14 @@ type Props = {
 
 const EditReviewsAuth = ({ reviewData }: Props) => {
 
-  return (
-    <div>
-      <h3>Your Reviews</h3>
-      {reviewData.map((review, idx) => (
-        <ReviewComponent key={idx} {...review} />
-      ))}
-    </div>
-  )
+  // return (
+  //   <div>
+  //     <h3>Your Reviews</h3>
+  //     {reviewData.map((review, idx) => (
+  //       <ReviewComponent key={idx} {...review} />
+  //     ))}
+  //   </div>
+  // )
 }
 
 export default EditReviewsAuth;

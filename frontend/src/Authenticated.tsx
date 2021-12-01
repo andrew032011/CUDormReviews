@@ -50,7 +50,7 @@ const Authenticated = ({ children }: Props) => {
         </>
       ) : (
         <div>
-          <h5>To edit your existing reviews, please log in below!</h5>
+          <h5>To add reviews or edit your existing reviews, please log in below!</h5>
           <FirebaseAuth uiConfig={uiConfig} firebaseAuth={auth} />
         </div>
       )}
