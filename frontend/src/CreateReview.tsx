@@ -1,6 +1,7 @@
 import { useState, ChangeEvent } from 'react';
 import axios from "axios";
 import styles from './createreview.module.css';
+import { getAuth } from 'firebase/auth';
 // import ReviewButtonSet from './ReviewButtonSet';
 
 type Prop = {
@@ -10,12 +11,12 @@ type Prop = {
 const CreateReview = ({dormName}: Prop) => {
     const [review, setReview] = useState('');
     const [year, setYear] = useState('');
-    const [social, setSocial] = useState('');
-    const [convenience, setConvenience] = useState('');
-    const [cleanliness, setCleanliness] = useState('');
-    const [noise, setNoise] = useState('');
-    const [lounges, setLounges] = useState('');
-    const [quality, setQuality] = useState('');
+    const [social, setSocial] = useState("1");
+    const [convenience, setConvenience] = useState("1");
+    const [cleanliness, setCleanliness] = useState("1");
+    const [noise, setNoise] = useState("1");
+    const [lounges, setLounges] = useState('1');
+    const [quality, setQuality] = useState('1');
 
     const handleReviewChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
       const r = event.currentTarget.value;
@@ -59,7 +60,11 @@ const CreateReview = ({dormName}: Prop) => {
     
     // Creates new review in database in current dorm's collection with post request 
     const createReview = async (dormName: string) => {
-        const newReview = {cleanliness, convenience, lounges, noise, quality, social , year, review};
+        let userID = "";
+        const auth = getAuth();
+        const user = auth.currentUser;
+        if (user !== null) {userID = user.uid};
+        const newReview = {cleanliness, convenience, lounges, noise, quality, social , year, review, userID};
         const { data } = await axios.post<string>(`/createReview/${dormName}`, newReview);
     };
    
@@ -123,12 +128,12 @@ const CreateReview = ({dormName}: Prop) => {
 
             setReview("");
             setYear("");
-            setSocial("");
-            setConvenience("");
-            setCleanliness("");
-            setNoise("");
-            setLounges("");
-            setQuality("")
+            setSocial("1");
+            setConvenience("1");
+            setCleanliness("1");
+            setNoise("1");
+            setLounges("1");
+            setQuality("1")
             }}>
             Submit
         </button>

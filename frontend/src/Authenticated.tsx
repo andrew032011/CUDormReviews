@@ -45,7 +45,10 @@ const Authenticated = ({ children }: Props) => {
       {user ? (
         <>
           <h2>Hi, {user.displayName}!</h2>
-          <button onClick={() => signOut(auth)}>Sign Out</button>
+          <button onClick={() =>
+          {signOut(auth)
+            window.location.reload();
+          }}>Sign Out</button>
           {children}
         </>
       ) : (

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { DormMap, ReviewWithID } from './App'
 import ReviewComponent from './ReviewComponent'
-import {getAuth} from "firebase/auth"
+import { getAuth } from "firebase/auth"
 import CreateReview from './CreateReview';
 
 // This component will simply take in the name of the dorm that the user clicked on to display information about the dorm.
@@ -15,6 +15,8 @@ type Props = {
 const DormPage = ({ /*reviewData,*/ dormName }: Props) => {
   const [reviews, setReview] = useState<ReviewWithID[]>([]);
 
+  const uid = () => (getAuth().currentUser !== null ? getAuth().currentUser!.uid! : "");
+
   useEffect(() => {
     document.title = dormName + " - CUDormReviews";
   })
@@ -26,14 +28,6 @@ const DormPage = ({ /*reviewData,*/ dormName }: Props) => {
         setReview(data);
       });
   }, [dormName/*, reviews*/]);
-
-  let userID = "";
-
-  useEffect(() => {
-    const auth = getAuth();
-    const user = auth.currentUser;
-    if (user !== null) {userID = user.uid};
-  }, [dormName]);
 
   return (
     <div>
@@ -55,18 +49,18 @@ const DormPage = ({ /*reviewData,*/ dormName }: Props) => {
           <p>Has a Dining Hall: {DormMap.get(dormName)?.dining ? "Yes" : "No"}</p>
           <a href={DormMap.get(dormName)?.housingWebsite}>Read more on the Housing webpage</a>
 
-          <p>Social Life: {(reviews.reduce((sum, curr) => sum + curr.social, 0) / reviews.length).toFixed(1)}</p>
-          <p>Convenience: {(reviews.reduce((sum, curr) => sum + curr.convenience, 0) / reviews.length).toFixed(1)}</p>
-          <p>Cleanliness: {(reviews.reduce((sum, curr) => sum + curr.cleanliness, 0) / reviews.length).toFixed(1)}</p>
-          <p>Noise: {(reviews.reduce((sum, curr) => sum + curr.noise, 0) / reviews.length).toFixed(1)}</p>
-          <p>Lounges: {(reviews.reduce((sum, curr) => sum + curr.lounges, 0) / reviews.length).toFixed(1)}</p>
-          <p>Quality/Appearance: {(reviews.reduce((sum, curr) => sum + curr.quality, 0) / reviews.length).toFixed(1)}</p>
+          <p>Social Life: {(reviews.reduce((sum, curr) => sum + parseInt(curr.social), 0) / reviews.length).toFixed(1)}</p>
+          <p>Convenience: {(reviews.reduce((sum, curr) => sum + parseInt(curr.convenience), 0) / reviews.length).toFixed(1)}</p>
+          <p>Cleanliness: {(reviews.reduce((sum, curr) => sum + parseInt(curr.cleanliness), 0) / reviews.length).toFixed(1)}</p>
+          <p>Noise: {(reviews.reduce((sum, curr) => sum + parseInt(curr.noise), 0) / reviews.length).toFixed(1)}</p>
+          <p>Lounges: {(reviews.reduce((sum, curr) => sum + parseInt(curr.lounges), 0) / reviews.length).toFixed(1)}</p>
+          <p>Quality/Appearance: {(reviews.reduce((sum, curr) => sum + parseInt(curr.quality), 0) / reviews.length).toFixed(1)}</p>
           {reviews.length > 0 ?
-          reviews.map((review, idx) => (
-            <ReviewComponent key={idx} {...review} uid={userID}/>
+            reviews.map((review, idx) => (
+              <ReviewComponent key={idx} {...review} localUserID={uid()} dormName={dormName}/>
           )) : <h4>No Reviews for {dormName} :(<br></br>Be the first to add a review</h4>}
 
-          
+
         </div> : <p></p>}
     </div>
   )
