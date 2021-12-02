@@ -37,7 +37,7 @@ const ReviewComponent = ({ cleanliness, convenience, lounges, noise, quality, so
                 {'Lounges: ' + lounges}<br></br>
                 {'Quality: ' + quality}<br></br><br></br>
 
-                <b>{'Comments: '}</b>{review}
+                <b>{'Comments: '}</b>{review}<br></br>
                 {localUserID === userID ? <input type="button" value={"Delete Review"} onClick={(event) => {
                 deleteReview(dormName);
             }} /> : <p>{/*localUserID + "   /   " + userID*/}</p>}
