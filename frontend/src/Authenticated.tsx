@@ -9,6 +9,7 @@ import {
   signOut,
 } from 'firebase/auth';
 import FirebaseAuth from 'react-firebaseui/FirebaseAuth';
+import { ReviewWithID } from './App';
 
 const firebaseConfig = {
   // put firebase config in here.
@@ -28,9 +29,11 @@ const auth = getAuth(firebase);
 
 type Props = {
   readonly children: React.ReactNode;
+  readonly dormName: string;
+  readonly setReview: (t: ReviewWithID[]) => void;
 };
 
-const Authenticated = ({ children }: Props) => {
+const Authenticated = ({ children, dormName, setReview }: Props) => {
   const [user, setUser] = useState<User | null>(null);
 
   const uiConfig = {
@@ -38,7 +41,17 @@ const Authenticated = ({ children }: Props) => {
     signInOptions: [GoogleAuthProvider.PROVIDER_ID],
   };
 
-  useEffect(() => onAuthStateChanged(auth, setUser), []);
+  useEffect(() => {
+    onAuthStateChanged(auth, setUser)
+  }, []);
+
+  useEffect(() => {
+    fetch("/getReviews/" + dormName)
+      .then((res) => res.json())
+      .then((data) => {
+        setReview(data);
+      });
+  }, [user]);
 
   return (
     <>
@@ -47,7 +60,7 @@ const Authenticated = ({ children }: Props) => {
           <h2>Hi, {user.displayName}!</h2>
           <button onClick={() =>
           {signOut(auth)
-            window.location.reload();
+            //window.location.reload();
           }}>Sign Out</button>
           {children}
         </>

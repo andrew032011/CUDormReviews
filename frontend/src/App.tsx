@@ -47,7 +47,7 @@ function App() {
           setReview={setReview}
           //uid={uid}
         />
-        <Authenticated /*handleUserChange={setUid}*/>
+        <Authenticated dormName={dormName} setReview={setReview} children={undefined}/>
           {dormName.length > 0 ? 
             <CreateReview
             dormName={dormName}
@@ -57,7 +57,7 @@ function App() {
           /> : <h3>Search for a dorm above!</h3>
           }
           
-        </Authenticated>
+        
       </header>
     </div>
   );
