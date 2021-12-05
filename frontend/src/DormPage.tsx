@@ -8,12 +8,13 @@ import CreateReview from './CreateReview';
 // This component will also take in the overall reviews for the dorm
 
 type Props = {
-  //readonly reviewData: ReviewWithID[];
+  readonly reviews: ReviewWithID[];
   readonly dormName: string;
+  readonly setReview: (t: ReviewWithID[]) => void;
 }
 
-const DormPage = ({ /*reviewData,*/ dormName }: Props) => {
-  const [reviews, setReview] = useState<ReviewWithID[]>([]);
+const DormPage = ({ reviews, dormName, setReview }: Props) => {
+  //const [reviews, setReview] = useState<ReviewWithID[]>([]);
 
   const uid = () => (getAuth().currentUser !== null ? getAuth().currentUser!.uid! : "");
 
@@ -52,12 +53,12 @@ const DormPage = ({ /*reviewData,*/ dormName }: Props) => {
           <p>Social Life: {(reviews.reduce((sum, curr) => sum + parseInt(curr.social), 0) / reviews.length).toFixed(1)}</p>
           <p>Convenience: {(reviews.reduce((sum, curr) => sum + parseInt(curr.convenience), 0) / reviews.length).toFixed(1)}</p>
           <p>Cleanliness: {(reviews.reduce((sum, curr) => sum + parseInt(curr.cleanliness), 0) / reviews.length).toFixed(1)}</p>
-          <p>Noise: {(reviews.reduce((sum, curr) => sum + parseInt(curr.noise), 0) / reviews.length).toFixed(1)}</p>
+          <p>Quietness: {(reviews.reduce((sum, curr) => sum + parseInt(curr.noise), 0) / reviews.length).toFixed(1)}</p>
           <p>Lounges: {(reviews.reduce((sum, curr) => sum + parseInt(curr.lounges), 0) / reviews.length).toFixed(1)}</p>
           <p>Quality/Appearance: {(reviews.reduce((sum, curr) => sum + parseInt(curr.quality), 0) / reviews.length).toFixed(1)}</p>
           {reviews.length > 0 ?
             reviews.map((review, idx) => (
-              <ReviewComponent key={idx} {...review} localUserID={uid()} dormName={dormName}/>
+              <ReviewComponent key={idx} {...review} localUserID={uid()} dormName={dormName} reviews={reviews} setReviews={setReview}/>
           )) : <h4>No Reviews for {dormName} :(<br></br>Be the first to add a review</h4>}
 
 

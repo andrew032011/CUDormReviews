@@ -27,6 +27,7 @@ function App() {
   const [searchQuery, setSearchQuery] = useState("");
   const [dormName, setDormName] = useState("");
   const [uid, setUid] = useState("");
+  const [reviews, setReview] = useState<ReviewWithID[]>([]);
 
   return (
     <div className="App">
@@ -42,12 +43,16 @@ function App() {
         />
         <DormPage
           dormName={dormName}
+          reviews={reviews}
+          setReview={setReview}
           //uid={uid}
         />
         <Authenticated /*handleUserChange={setUid}*/>
           {dormName.length > 0 ? 
             <CreateReview
             dormName={dormName}
+            reviews={reviews}
+            setReviews={setReview}
             //uid={uid}
           /> : <h3>Search for a dorm above!</h3>
           }

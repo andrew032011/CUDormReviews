@@ -2,13 +2,16 @@ import { useState, ChangeEvent } from 'react';
 import axios from "axios";
 import styles from './createreview.module.css';
 import { getAuth } from 'firebase/auth';
+import { ReviewWithID } from './App';
 // import ReviewButtonSet from './ReviewButtonSet';
 
 type Prop = {
     dormName: string
+    readonly reviews: ReviewWithID[];
+    readonly setReviews: (t: ReviewWithID[]) => void;
 }
 
-const CreateReview = ({dormName}: Prop) => {
+const CreateReview = ({dormName, reviews, setReviews}: Prop) => {
     const [review, setReview] = useState('');
     const [year, setYear] = useState('');
     const [social, setSocial] = useState("1");
@@ -64,21 +67,25 @@ const CreateReview = ({dormName}: Prop) => {
         const auth = getAuth();
         const user = auth.currentUser;
         if (user !== null) {userID = user.uid};
-        const newReview = {cleanliness, convenience, lounges, noise, quality, social , year, review, userID};
+        const newReview = {cleanliness, convenience, lounges, noise, quality, social , year, review, userID, postID: "null"};
         const { data } = await axios.post<string>(`/createReview/${dormName}`, newReview);
+
+        const oldReviews: ReviewWithID[] = [...reviews];
+        oldReviews.push(newReview);
+        setReviews(oldReviews);
     };
    
     // Creates a drop down menu for a given review category
-    const dropDown = (title: string, category: string, change: (event: ChangeEvent<HTMLSelectElement>) => void ) => {
+    const dropDown = (title: string, category: string, name: string, change: (event: ChangeEvent<HTMLSelectElement>) => void ) => {
         return (
         <div>
         <span>{title}
         <select value = {category} onChange={change}>
-            <option value = "1">1</option>
+            <option value = "1">1 - Least {name}</option>
             <option value = "2">2</option>
             <option value = "3">3</option>
             <option value = "4">4</option>
-            <option value = "5">5</option>
+            <option value = "5">5 - Most {name}</option>
         </select>
         </span>
         <br></br>
@@ -104,17 +111,17 @@ const CreateReview = ({dormName}: Prop) => {
         />
         </span>
            
-        {dropDown("Social Life", social, handleSocialChange)}
+        {dropDown("Social Life", social, "social", handleSocialChange)}
 
-        {dropDown("Convenience", convenience, handleConvenienceChange)}
+        {dropDown("Convenience", convenience, "convenient", handleConvenienceChange)}
 
-        {dropDown("Cleanliness", cleanliness, handleCleanlinessChange)}
+        {dropDown("Cleanliness", cleanliness, "clean", handleCleanlinessChange)}
 
-        {dropDown("Noise", noise, handleNoiseChange)}
+        {dropDown("Quietness", noise, "quiet", handleNoiseChange)}
 
-        {dropDown("Lounges", lounges, handleLoungesChange)}
+        {dropDown("Lounges", lounges, "lounge space", handleLoungesChange)}
 
-        {dropDown("Quality/Appearance", quality, handleQualityChange)}
+        {dropDown("Quality/Appearance", quality, "quality", handleQualityChange)}
 
         <button onClick={() => {
             console.log(social)
