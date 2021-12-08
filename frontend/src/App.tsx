@@ -18,11 +18,48 @@ export type ReviewWithID = {
   id: string;
 }
 
+export type Filter = {
+  hasAC: boolean
+  hasSingles: boolean;
+  hasDoubles: boolean;
+  hasTriples: boolean;
+  hasQuads: boolean;
+  hasSuites: boolean;
+  hasPods: boolean;
+  hasCorridors: boolean;
+  hasElevators: boolean;
+  hasDining: boolean;
+}
+
+let searchFilter: Filter = {
+  hasAC: false,
+  hasSingles: false,
+  hasDoubles: false,
+  hasTriples: false,
+  hasQuads: false,
+  hasSuites: false,
+  hasPods: false,
+  hasCorridors: false,
+  hasElevators: false,
+  hasDining: false
+}
+
 
 function App() {
   const [review, setReview] = useState<ReviewWithID[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [dormName, setDormName] = useState("");
+  const [hasAC, setHasAC] = useState(false);
+  const [hasSingles, setHasSingles] = useState(false);
+  const [hasDoubles, setHasDoubles] = useState(false);
+  const [hasTriples, setHasTriples] = useState(false);
+  const [hasQuads, setHasQuads] = useState(false);
+  const [hasSuites, setHasSuites] = useState(false);
+  const [hasPods, setHasPods] = useState(false);
+  const [hasCorridors, setHasCorridors] = useState(false);
+  const [hasElevators, setHasElevators] = useState(false);
+  const [hasDining, setHasDining] = useState(false);
+  searchFilter = {hasAC, hasSingles, hasDoubles, hasTriples, hasQuads, hasSuites, hasPods, hasCorridors, hasElevators, hasDining}
 
   return (
     <div className="App">
@@ -31,10 +68,31 @@ function App() {
         <SearchBar
           searchQuery={searchQuery}
           handleFilterTextChange={setSearchQuery}
+          hasAC = {hasAC}
+          handleACCheckBoxChange={(e) => setHasAC(e.target.checked)}
+          hasSingles = {hasSingles}
+          handleSinglesCheckBoxChange={(e) => setHasSingles(e.target.checked)}
+          hasDoubles = {hasDoubles}
+          handleDoublesCheckBoxChange={(e) => setHasDoubles(e.target.checked)}
+          hasTriples = {hasTriples}
+          handleTriplesCheckBoxChange={(e) => setHasTriples(e.target.checked)}
+          hasQuads = {hasQuads}
+          handleQuadsCheckBoxChange={(e) => setHasQuads(e.target.checked)}
+          hasSuites = {hasSuites}
+          handleSuitesCheckBoxChange={(e) => setHasSuites(e.target.checked)}
+          hasPods = {hasPods}
+          handlePodsCheckBoxChange={(e) => setHasPods(e.target.checked)}
+          hasCorridors = {hasCorridors}
+          handleCorridorsCheckBoxChange={(e) => setHasCorridors(e.target.checked)}
+          hasElevators = {hasElevators}
+          handleElevatorsCheckBoxChange={(e) => setHasElevators(e.target.checked)}
+          hasDining = {hasDining}
+          handleDiningCheckBoxChange={(e) => setHasDining(e.target.checked)}
         />
         <HomePage
           searchQuery={searchQuery}
           handleClick={setDormName}
+          searchFilter={searchFilter}
         />
         <DormPage
           // The reviewData will only be the data for the particular dorm from Firebase; we still need to make a way to extract that from the search term.  For now the same data will display on all dorms
