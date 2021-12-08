@@ -8,7 +8,7 @@ admin.initializeApp({
   credential: admin.credential.cert(serviceAccount)
 });
 
-const host = "https://cudormreviews.herokuapp.com"
+const host = "http://mighty-falls-39041.herokuapp.com"
 
 const db = admin.firestore();
 
