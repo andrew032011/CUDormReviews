@@ -1,16 +1,39 @@
-import admin from 'firebase-admin';
+//import admin from 'firebase-admin';
 import express from 'express';
 import cors from "cors";
 import path from "path";
+//import { db } from '../firebase-config';
+import * as admin from 'firebase-admin';
+import { readFileSync } from 'fs';
+import { config } from 'dotenv';
 
-const serviceAccount = require("../service-account.json");
+config();
+
+const serviceAccountPath = './service-account.json';
+
+const hydrateServiceAccount = (
+  serviceAccountPath: string
+): admin.ServiceAccount => {
+  const serviceAccount = JSON.parse(
+    readFileSync(serviceAccountPath).toString()
+  );
+  const privateKey = process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, '\n');
+  return { ...serviceAccount, privateKey };
+};
+
 admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount)
+  credential: admin.credential.cert(hydrateServiceAccount(serviceAccountPath)),
 });
+
+const db = admin.firestore();
+//const serviceAccount = require("../service-account.json");
+// admin.initializeApp({
+//   credential: admin.credential.cert(serviceAccount)
+// });
 
 const host = "http://mighty-falls-39041.herokuapp.com"
 
-const db = admin.firestore();
+//const db = admin.firestore();
 
 const app = express();
 app.use(cors())
