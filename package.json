@@ -1,17 +1,24 @@
 {
   "name": "cudormreviews",
   "private": true,
-  "workspaces": ["backend", "frontend"],
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
-
   "scripts": {
     "server": "cd backend && yarn start",
     "frontend": "cd frontend && yarn start",
-    "start": "concurrently \"yarn server\" \"yarn frontend\" "
-},
-"dependencies": {
-    "concurrently": "^6.4.0"
-}
+    "start": "concurrently \"yarn server\" \"yarn frontend\" ",
+    "heroku-postbuild": "yarn workspaces run build"
+  },
+  "dependencies": {
+    "concurrently": "^6.4.0",
+    "heroku": "^7.59.2"
+  },
+  "resolutions": {
+    "@oclif/color": "0.1.0"
+  }
 }
