@@ -9,7 +9,7 @@ import { config } from 'dotenv';
 
 config();
 
-const serviceAccountPath = './service-account.json';
+const serviceAccountPath = 'service-account.json';
 
 const hydrateServiceAccount = (
   serviceAccountPath: string
@@ -31,7 +31,7 @@ const db = admin.firestore();
 //   credential: admin.credential.cert(serviceAccount)
 // });
 
-const host = "http://mighty-falls-39041.herokuapp.com"
+const host = "https://mighty-falls-39041.herokuapp.com"
 
 //const db = admin.firestore();
 
