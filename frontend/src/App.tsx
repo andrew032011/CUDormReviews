@@ -4,25 +4,67 @@ import './App.css';
 import SearchBar from './SearchBar';
 import DormPage from './DormPage';
 import HomePage from './HomePage';
+import EditReviewsAuth from './EditReviewsAuth';
+import Authenticated from './Authenticated';
+import CreateReview from './CreateReview';
 
 // To be used by other files
 export type ReviewWithID = {
-  cleanliness: number;
-  convenience: number;
-  lounges: number;
-  noise: number;
-  quality: number;
-  social: number;
-  year: number;
+  cleanliness: string;
+  convenience: string;
+  lounges: string;
+  noise: string;
+  quality: string;
+  social: string;
+  year: string;
   review: string;
-  id: string;
+  userID: string;
+  postID: string;
+}
+
+export type Filter = {
+  hasAC: boolean
+  hasSingles: boolean;
+  hasDoubles: boolean;
+  hasTriples: boolean;
+  hasQuads: boolean;
+  hasSuites: boolean;
+  hasPods: boolean;
+  hasCorridors: boolean;
+  hasElevators: boolean;
+  hasDining: boolean;
+}
+
+let searchFilter: Filter = {
+  hasAC: false,
+  hasSingles: false,
+  hasDoubles: false,
+  hasTriples: false,
+  hasQuads: false,
+  hasSuites: false,
+  hasPods: false,
+  hasCorridors: false,
+  hasElevators: false,
+  hasDining: false
 }
 
 
 function App() {
-  const [review, setReview] = useState<ReviewWithID[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [dormName, setDormName] = useState("");
+  const [uid, setUid] = useState("");
+  const [reviews, setReview] = useState<ReviewWithID[]>([]);
+  const [hasAC, setHasAC] = useState(false);
+  const [hasSingles, setHasSingles] = useState(false);
+  const [hasDoubles, setHasDoubles] = useState(false);
+  const [hasTriples, setHasTriples] = useState(false);
+  const [hasQuads, setHasQuads] = useState(false);
+  const [hasSuites, setHasSuites] = useState(false);
+  const [hasPods, setHasPods] = useState(false);
+  const [hasCorridors, setHasCorridors] = useState(false);
+  const [hasElevators, setHasElevators] = useState(false);
+  const [hasDining, setHasDining] = useState(false);
+  searchFilter = {hasAC, hasSingles, hasDoubles, hasTriples, hasQuads, hasSuites, hasPods, hasCorridors, hasElevators, hasDining}
 
   return (
     <div className="App">
@@ -31,17 +73,49 @@ function App() {
         <SearchBar
           searchQuery={searchQuery}
           handleFilterTextChange={setSearchQuery}
+          hasAC = {hasAC}
+          handleACCheckBoxChange={(e) => setHasAC(e.target.checked)}
+          hasSingles = {hasSingles}
+          handleSinglesCheckBoxChange={(e) => setHasSingles(e.target.checked)}
+          hasDoubles = {hasDoubles}
+          handleDoublesCheckBoxChange={(e) => setHasDoubles(e.target.checked)}
+          hasTriples = {hasTriples}
+          handleTriplesCheckBoxChange={(e) => setHasTriples(e.target.checked)}
+          hasQuads = {hasQuads}
+          handleQuadsCheckBoxChange={(e) => setHasQuads(e.target.checked)}
+          hasSuites = {hasSuites}
+          handleSuitesCheckBoxChange={(e) => setHasSuites(e.target.checked)}
+          hasPods = {hasPods}
+          handlePodsCheckBoxChange={(e) => setHasPods(e.target.checked)}
+          hasCorridors = {hasCorridors}
+          handleCorridorsCheckBoxChange={(e) => setHasCorridors(e.target.checked)}
+          hasElevators = {hasElevators}
+          handleElevatorsCheckBoxChange={(e) => setHasElevators(e.target.checked)}
+          hasDining = {hasDining}
+          handleDiningCheckBoxChange={(e) => setHasDining(e.target.checked)}
         />
         <HomePage
           searchQuery={searchQuery}
           handleClick={setDormName}
+          searchFilter={searchFilter}
         />
         <DormPage
-          // The reviewData will only be the data for the particular dorm from Firebase; we still need to make a way to extract that from the search term.  For now the same data will display on all dorms
-          // Replace this below with the "review" state declared above; this is just testing data for now
-          reviewData={[{ cleanliness: 5, convenience: 2, lounges: 3, noise: 5, quality: 3, social: 2, year: 1, review: "", id: "" }, { cleanliness: 2, convenience: 5, lounges: 4, noise: 4, quality: 5, social: 1, year: 1, review: "", id: "" }]}
           dormName={dormName}
+          reviews={reviews}
+          setReview={setReview}
+          //uid={uid}
         />
+        <Authenticated dormName={dormName} setReview={setReview} children={undefined}/>
+          {dormName.length > 0 ? 
+            <CreateReview
+            dormName={dormName}
+            reviews={reviews}
+            setReviews={setReview}
+            //uid={uid}
+          /> : <h3>Search for a dorm above!</h3>
+          }
+          
+        
       </header>
     </div>
   );

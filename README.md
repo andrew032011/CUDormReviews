@@ -1,3 +1,13 @@
+# CUDormReviews!
+Our project is a website called CUDormReviews (inspired by CUReviews) that lets users submit and view reviews for all of the different dorms of Cornell. When you enter the site, there is a homepage with a background image, a search bar to search for the dorm you are looking for, a list of all the dorms (with clickable links for each that take you to a unique page about the dorm), and a section with filters to search by. When you search for a specific dorm or edit one of the filters, the list will change to only display dorms that match your search and filter criteria. 
+On the dorm-specific pages, there is some general information including whether the dorm has AC/elevators/a dining hall, its size, and single, double, triple, and quad availability, and also some review-based information. The review-based information displayed is the average rating given by users for several categories, including social life, convenience, cleanliness, noise, lounges, and quality/appearance. There also are a list of individual user reviews displayed. In addition, there is a space to leave your own review. When the user is signed in, they can delete any of their reviews they previously creted.  One possible additional feature the site might include is an option to directly compare two dorms side-by-side.
+
+Group Members: Reid Fleishman (rf377), Adam Cahall (abc256), Andrew Chen (axc2)
+
+Deployed Project Link: none yet!
+
+Github Link: https://github.com/andrew032011/cudormreviews
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

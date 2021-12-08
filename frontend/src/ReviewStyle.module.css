@@ -1,0 +1,15 @@
+.review {
+    background-color: white;
+    color: black;
+    font-family: Georgia;
+    font-size:smaller;
+    width: 400px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-style: solid;
+
+    border-width: 10px;
+    word-wrap: break-word;
+}
