@@ -51,7 +51,7 @@ const HomePage = ({ searchQuery, handleClick, searchFilter }: Props) => {
         (!searchFilter.hasCorridors || x.corridors) &&
         (!searchFilter.hasElevators || x.elevators) &&
         (!searchFilter.hasDining || x.dining) 
-        ).slice(DormArray.length/2, DormArray.length-1).map((data: Dorm) => (
+        ).slice(DormArray.length/2, DormArray.length).map((data: Dorm) => (
           <Box component="span" sx={{ p: 1}}>
           <Button className={styles.dormButton} variant="contained" onClick={(event) => {
             handleClick(data.name);
