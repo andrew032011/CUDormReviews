@@ -9,7 +9,7 @@ import { config } from 'dotenv';
 
 config();
 
-const serviceAccountPath = 'service-account.json';
+const serviceAccountPath = './service-account.json';
 
 const hydrateServiceAccount = (
   serviceAccountPath: string
@@ -17,9 +17,11 @@ const hydrateServiceAccount = (
   const serviceAccount = JSON.parse(
     readFileSync(serviceAccountPath).toString()
   );
+  console.log(serviceAccount)
   const privateKey = process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, '\n');
   return { ...serviceAccount, privateKey };
 };
+
 
 admin.initializeApp({
   credential: admin.credential.cert(hydrateServiceAccount(serviceAccountPath)),
@@ -37,7 +39,7 @@ const host = "https://mighty-falls-39041.herokuapp.com"
 
 const app = express();
 app.use(cors())
-app.use(express.static(path.join(__dirname, "../frontend/build")));
+app.use(express.static(path.join(__dirname, "../../../frontend/build")));
 app.use(express.json());
 
 type ReviewWithID = {

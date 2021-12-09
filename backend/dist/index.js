@@ -31,9 +31,10 @@ const admin = __importStar(require("firebase-admin"));
 const fs_1 = require("fs");
 const dotenv_1 = require("dotenv");
 (0, dotenv_1.config)();
-const serviceAccountPath = 'service-account.json';
+const serviceAccountPath = './service-account.json';
 const hydrateServiceAccount = (serviceAccountPath) => {
     const serviceAccount = JSON.parse((0, fs_1.readFileSync)(serviceAccountPath).toString());
+    console.log(serviceAccount);
     const privateKey = process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, '\n');
     return { ...serviceAccount, privateKey };
 };
@@ -49,7 +50,7 @@ const host = "https://mighty-falls-39041.herokuapp.com";
 //const db = admin.firestore();
 const app = (0, express_1.default)();
 app.use((0, cors_1.default)());
-app.use(express_1.default.static(path_1.default.join(__dirname, "../frontend/build")));
+app.use(express_1.default.static(path_1.default.join(__dirname, "../../../frontend/build")));
 app.use(express_1.default.json());
 // Route parameter dorm specifies which dorm review is for
 app.post(`${host}/createReview/:dorm`, async function (req, res) {
