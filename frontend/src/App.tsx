@@ -349,4 +349,4 @@ export const DormMap = new Map([
   ["Cascadilla Hall", cascadilla]
 ])
 
-export const DormArray: Array<Dorm> = [mews, balch, dickson, ckb, ganedago, hr5, lr6, donlon, becker, cascadilla, mews, ganedago, donlon, becker, cascadilla, mews, ganedago, donlon, becker, cascadilla, mews, ganedago, donlon, becker, cascadilla, mews];
+export const DormArray: Array<Dorm> = [mews, balch, dickson, ckb, ganedago, hr5, lr6, donlon, becker, cascadilla];
