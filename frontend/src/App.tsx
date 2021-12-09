@@ -8,7 +8,7 @@ import EditReviewsAuth from './EditReviewsAuth';
 import Authenticated from './Authenticated';
 import CreateReview from './CreateReview';
 import Checkboxes from './Checkbox';
-import "@fontsource/roboto"
+import "@fontsource/roboto";
 import styles from './App.module.css';
 
 // To be used by other files
@@ -254,4 +254,4 @@ export const DormMap = new Map([
   ["Cascadilla Hall", cascadilla]
 ])
 
-export const DormArray: Array<Dorm> = [mews, ganedago, donlon, becker, cascadilla, mews, ganedago, donlon, becker, cascadilla, mews, ganedago, donlon, becker, cascadilla, mews, ganedago, donlon, becker, cascadilla, mews];
+export const DormArray: Array<Dorm> = [mews, ganedago, donlon, becker, cascadilla];
