@@ -50,7 +50,7 @@ const host = "https://mighty-falls-39041.herokuapp.com";
 //const db = admin.firestore();
 const app = (0, express_1.default)();
 app.use((0, cors_1.default)());
-app.use(express_1.default.static(path_1.default.join(__dirname, "../../../frontend/build")));
+app.use(express_1.default.static(path_1.default.join(__dirname, "../../frontend/build")));
 app.use(express_1.default.json());
 // Route parameter dorm specifies which dorm review is for
 app.post(`${host}/createReview/:dorm`, async function (req, res) {

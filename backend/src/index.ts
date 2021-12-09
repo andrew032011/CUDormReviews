@@ -39,7 +39,7 @@ const host = "https://mighty-falls-39041.herokuapp.com"
 
 const app = express();
 app.use(cors())
-app.use(express.static(path.join(__dirname, "../../../frontend/build")));
+app.use(express.static(path.join(__dirname, "../../frontend/build")));
 app.use(express.json());
 
 type ReviewWithID = {
