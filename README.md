@@ -4,7 +4,7 @@ On the dorm-specific pages, there is some general information including whether 
 
 Group Members: Reid Fleishman (rf377), Adam Cahall (abc256), Andrew Chen (axc2)
 
-Deployed Project Link: none yet!
+Deployed Project Link: https://cudormreviews.herokuapp.com/
 
 Github Link: https://github.com/andrew032011/cudormreviews
 
