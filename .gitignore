@@ -2,7 +2,7 @@
 
 # dependencies
 node_modules/
-service-account.json
+.env
 /.pnp
 .pnp.js
 .env
@@ -24,4 +24,4 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-backend/service-account.json
+
