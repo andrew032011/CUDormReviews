@@ -1,4 +1,6 @@
+import { Button, Box} from '@mui/material';
 import { DormMap, DormArray, ReviewWithID, Dorm, Filter } from './App'
+import styles from './App.module.css';
 
 /* TODO:
 - Add the checkboxes so, in addition to the search query, the dorms can be filtered by certain properties
@@ -11,10 +13,11 @@ type Props = {
 }
 
 const HomePage = ({ searchQuery, handleClick, searchFilter }: Props) => {
-
+  
   return (
-    <div>
-      <div>
+    <div className={styles.row}>
+    <div className={styles.column}>
+    <div className = {styles.dorms}>
         {DormArray.filter(x => x.name.toLowerCase().includes(searchQuery.toLowerCase()) && 
         (!searchFilter.hasAC || x.ac) &&
         (!searchFilter.hasSingles || x.singles) &&
@@ -26,17 +29,39 @@ const HomePage = ({ searchQuery, handleClick, searchFilter }: Props) => {
         (!searchFilter.hasCorridors || x.corridors) &&
         (!searchFilter.hasElevators || x.elevators) &&
         (!searchFilter.hasDining || x.dining) 
-        ).map((data: Dorm) => (
-          <input type="button" value={data.name} onClick={(event) => {
+        ).slice(0,DormArray.length/2).map((data: Dorm) => (
+          <Box component="span" sx={{ p: 1}}>
+          <Button className={styles.dormButton} variant="contained" onClick={(event) => {
             handleClick(data.name);
-          }} />))
+          }} >{data.name}</Button>
+          </Box>))
         }
-      </div>
-
-      <div>
-        {/*Insert checkboxes here*/}
-      </div>
     </div>
+    </div>
+    <div className = {styles.column}>
+    <div className = {styles.dorms}>
+        {DormArray.filter(x => x.name.toLowerCase().includes(searchQuery.toLowerCase()) && 
+        (!searchFilter.hasAC || x.ac) &&
+        (!searchFilter.hasSingles || x.singles) &&
+        (!searchFilter.hasDoubles || x.doubles) &&
+        (!searchFilter.hasTriples || x.triples) &&
+        (!searchFilter.hasQuads || x.quads) &&
+        (!searchFilter.hasSuites || x.suites) &&
+        (!searchFilter.hasPods || x.pods) &&
+        (!searchFilter.hasCorridors || x.corridors) &&
+        (!searchFilter.hasElevators || x.elevators) &&
+        (!searchFilter.hasDining || x.dining) 
+        ).slice(DormArray.length/2, DormArray.length-1).map((data: Dorm) => (
+          <Box component="span" sx={{ p: 1}}>
+          <Button className={styles.dormButton} variant="contained" onClick={(event) => {
+            handleClick(data.name);
+          }} >{data.name}</Button>
+          </Box>))
+        }
+    </div>
+    </div>
+    </div>
+ 
   )
 }
 

@@ -7,6 +7,9 @@ import HomePage from './HomePage';
 import EditReviewsAuth from './EditReviewsAuth';
 import Authenticated from './Authenticated';
 import CreateReview from './CreateReview';
+import Checkboxes from './Checkbox';
+import "@fontsource/roboto"
+import styles from './App.module.css';
 
 // To be used by other files
 export type ReviewWithID = {
@@ -69,10 +72,18 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>CUDormReviews</h1>
-        <SearchBar
+        
+        <div className= {styles.searchbar}>
+        <div className= {styles.top}>
+        <span className= {styles.sitename}>CUDormReviews</span>
+        <div className=  {styles.search}>
+        <SearchBar 
           searchQuery={searchQuery}
           handleFilterTextChange={setSearchQuery}
+        />
+        </div>
+        </div>
+        <Checkboxes 
           hasAC = {hasAC}
           handleACCheckBoxChange={(e) => setHasAC(e.target.checked)}
           hasSingles = {hasSingles}
@@ -94,11 +105,14 @@ function App() {
           hasDining = {hasDining}
           handleDiningCheckBoxChange={(e) => setHasDining(e.target.checked)}
         />
+        <div className = {styles.dormLabels}>
         <HomePage
           searchQuery={searchQuery}
           handleClick={setDormName}
           searchFilter={searchFilter}
         />
+        </div>
+        </div>
         <DormPage
           dormName={dormName}
           reviews={reviews}
@@ -112,7 +126,7 @@ function App() {
             reviews={reviews}
             setReviews={setReview}
             //uid={uid}
-          /> : <h3>Search for a dorm above!</h3>
+          /> : <h3></h3>
           }
           
         
@@ -240,4 +254,4 @@ export const DormMap = new Map([
   ["Cascadilla Hall", cascadilla]
 ])
 
-export const DormArray: Array<Dorm> = [mews, ganedago, donlon, becker, cascadilla];
+export const DormArray: Array<Dorm> = [mews, ganedago, donlon, becker, cascadilla, mews, ganedago, donlon, becker, cascadilla, mews, ganedago, donlon, becker, cascadilla, mews, ganedago, donlon, becker, cascadilla, mews];

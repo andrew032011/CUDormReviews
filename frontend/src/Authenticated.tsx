@@ -10,6 +10,8 @@ import {
 } from 'firebase/auth';
 import FirebaseAuth from 'react-firebaseui/FirebaseAuth';
 import { ReviewWithID } from './App';
+import styles from './App.module.css';
+import {Button } from '@mui/material';
 
 const firebaseConfig = {
   // put firebase config in here.
@@ -57,16 +59,16 @@ const Authenticated = ({ children, dormName, setReview }: Props) => {
     <>
       {user ? (
         <>
-          <h2>Hi, {user.displayName}!</h2>
-          <button onClick={() =>
+          <h4>Hi, {user.displayName}!</h4>
+          <Button variant="contained" onClick={() =>
           {signOut(auth)
             //window.location.reload();
-          }}>Sign Out</button>
+          }}>Sign Out</Button>
           {children}
         </>
       ) : (
-        <div>
-          <h5>To add reviews or edit your existing reviews, please log in below!</h5>
+        <div className= {styles.auth}>
+          <span >To add reviews or edit your existing reviews, please log in below!</span>
           <FirebaseAuth uiConfig={uiConfig} firebaseAuth={auth} />
         </div>
       )}
