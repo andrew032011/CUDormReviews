@@ -343,7 +343,7 @@ export const DormMap = new Map([
   ["Court-Kay-Bauer", ckb],
   ["Ganędagǫ: Hall", ganedago],
   ["High Rise #5", hr5],
-  {"Low Rise #6", lr6}
+  ["Low Rise #6", lr6],
   ["Mary Donlon Hall", donlon],
   ["Carl Becker House", becker],
   ["Cascadilla Hall", cascadilla]
