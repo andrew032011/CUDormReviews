@@ -174,6 +174,60 @@ const mews: Dorm = {
   location: "North Campus"
 }
 
+const balch: Dorm = {
+  singles: true,
+  doubles: true,
+  triples: true,
+  quads: false,
+  suites: false,
+  pods: false,
+  corridors: true,
+  residents: 230,
+  ac: false,
+  elevators: true,
+  dining: false,
+  housingWebsite: "https://scl.cornell.edu/residential-life/housing/campus-housing/first-year-undergraduates/residence-halls/balch-hall",
+  picLink: "https://scl.cornell.edu/sites/scl/files/styles/portrait_image/public/2019-09/Balch.png?h=6543e4d0&itok=gXnjKRbi",
+  name: "Balch Hall",
+  location: "North Campus"
+}
+
+const dickson: Dorm = {
+  singles: true,
+  doubles: true,
+  triples: true,
+  quads: false,
+  suites: false,
+  pods: false,
+  corridors: true,
+  residents: 460,
+  ac: false,
+  elevators: true,
+  dining: false,
+  housingWebsite: "https://scl.cornell.edu/residential-life/housing/campus-housing/first-year-undergraduates/residence-halls/clara-dickson-hall",
+  picLink: "https://scl.cornell.edu/sites/scl/files/styles/portrait_image/public/2019-09/Clara-Dickson_0.png?h=6543e4d0&itok=rlSWRS2y",
+  name: "Clara Dickson Hall",
+  location: "North Campus"
+}
+
+const ckb: Dorm = {
+  singles: true,
+  doubles: true,
+  triples: false,
+  quads: false,
+  suites: false,
+  pods: true,
+  corridors: false,
+  residents: 275,
+  ac: true,
+  elevators: true,
+  dining: false,
+  housingWebsite: "https://scl.cornell.edu/residential-life/housing/campus-housing/first-year-undergraduates/residence-halls/court-kay-bauer-hall",
+  picLink: "https://scl.cornell.edu/sites/scl/files/styles/portrait_image/public/2019-11/Court-Kay-Bauer-Hall_0.jpg?h=e1a3e744&itok=tFbC7Fle",
+  name: "Court-Kay-Bauer Hall",
+  location: "North Campus"
+}
+
 const ganedago: Dorm = {
   singles: true,
   doubles: true,
@@ -189,6 +243,42 @@ const ganedago: Dorm = {
   housingWebsite: "https://scl.cornell.edu/residential-life/housing/campus-housing/first-year-undergraduates/residence-halls/ganedago-hall",
   picLink: "https://scl.cornell.edu/sites/scl/files/styles/portrait_image/public/2020-10/SophSiteRendering.JPG?h=473ee7f7&itok=A__s8kaO",
   name: "Ganędagǫ: Hall",
+  location: "North Campus"
+}
+
+const hr5: Dorm = {
+  singles: true,
+  doubles: true,
+  triples: true,
+  quads: false,
+  suites: true,
+  pods: false,
+  corridors: false,
+  residents: 200,
+  ac: false,
+  elevators: true,
+  dining: false,
+  housingWebsite: "https://scl.cornell.edu/residential-life/housing/campus-housing/first-year-undergraduates/residence-halls/high-rise-5",
+  picLink: "https://scl.cornell.edu/sites/scl/files/styles/portrait_image/public/2019-11/Screen%20Shot%202019-11-08%20at%209.48.41%20AM.png?h=2c87ba76&itok=aad_-uNm",
+  name: "High Rise #5",
+  location: "North Campus"
+}
+
+const lr6: Dorm = {
+  singles: true,
+  doubles: true,
+  triples: true,
+  quads: false,
+  suites: true,
+  pods: false,
+  corridors: false,
+  residents: 160,
+  ac: false,
+  elevators: true,
+  dining: false,
+  housingWebsite: "https://scl.cornell.edu/residential-life/housing/campus-housing/first-year-undergraduates/residence-halls/low-rise-6",
+  picLink: "https://scl.cornell.edu/sites/scl/files/styles/portrait_image/public/2019-11/Screen%20Shot%202019-11-08%20at%2010.00.07%20AM.png?h=2c87ba76&itok=2RjJXhOu",
+  name: "Low Rise #6",
   location: "North Campus"
 }
 
@@ -248,10 +338,15 @@ const cascadilla: Dorm = {
 
 export const DormMap = new Map([
   ["Mews Hall", mews],
+  ["Balch Hall", balch],
+  ["Clara Dickson Hall", dickson],
+  ["Court-Kay-Bauer", ckb],
   ["Ganędagǫ: Hall", ganedago],
+  ["High Rise #5", hr5],
+  {"Low Rise #6", lr6}
   ["Mary Donlon Hall", donlon],
   ["Carl Becker House", becker],
   ["Cascadilla Hall", cascadilla]
 ])
 
-export const DormArray: Array<Dorm> = [mews, ganedago, donlon, becker, cascadilla, mews, ganedago, donlon, becker, cascadilla, mews, ganedago, donlon, becker, cascadilla, mews, ganedago, donlon, becker, cascadilla, mews];
+export const DormArray: Array<Dorm> = [mews, balch, dickson, ckb, ganedago, hr5, lr6, donlon, becker, cascadilla, mews, ganedago, donlon, becker, cascadilla, mews, ganedago, donlon, becker, cascadilla, mews, ganedago, donlon, becker, cascadilla, mews];
