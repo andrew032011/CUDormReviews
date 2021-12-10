@@ -1,0 +1,82 @@
+
+
+.searchbar {
+    width: 100%;
+}
+
+.sitename {
+    /* vertical-align: top; */
+    padding: 30px;
+    float:left;
+}
+.top {
+    margin-top:20px;
+    
+}
+.checkboxes {
+    display: flex;
+    flex-direction: column;
+    float: right;
+    width: 13%;
+    align-items: right;
+    justify-content: center;
+    text-align: left;
+    margin: 30px;
+    font-size: x-large;
+    border: 2px;
+    border-color: gray;
+    border-style: solid;
+    border-radius: 5px;
+    width: 180px;
+}
+
+.dorms {
+    display: flex;
+    flex-direction: column;
+    float: left;
+    width: 100%;
+    align-items: left;
+    justify-content: left;
+    /* height: 50%; */
+
+}
+
+.dormButton {
+    float: left;
+    width:100%;
+}
+
+.row {
+    display: -ms-flexbox; /* IE10 */
+    display: flex;
+    justify-content: left;
+  }
+  
+  .column {
+    -ms-flex: 50%; /* IE10 */
+    flex: 0 1 auto;
+    margin: 30px;
+    margin-right: 60px;
+    width:100%;
+  }
+
+  .dormLabels {
+      width: 100%;
+  }
+
+  .search {
+      padding-right: 325px;
+  }
+
+  .auth {
+      border: 2px;
+      border-color: rgb(0,120,205);
+      border-style: solid;
+      border-radius: 5px;
+      padding: 30px;
+      margin:10px;
+      font-size: large;
+      color: rgb(0,120,205);
+      font-weight: bold;
+  }
+
