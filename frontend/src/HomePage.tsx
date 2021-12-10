@@ -2,10 +2,6 @@ import { Button, Box} from '@mui/material';
 import { DormMap, DormArray, ReviewWithID, Dorm, Filter } from './App'
 import styles from './App.module.css';
 
-/* TODO:
-- Add the checkboxes so, in addition to the search query, the dorms can be filtered by certain properties
-*/
-
 type Props = {
   readonly searchQuery: string;
   readonly handleClick: (t: string) => void;
