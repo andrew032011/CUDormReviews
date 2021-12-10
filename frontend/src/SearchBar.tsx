@@ -23,6 +23,8 @@ type Props = {
   handleElevatorsCheckBoxChange: ChangeEventHandler<HTMLInputElement>;
   hasDining: boolean;
   handleDiningCheckBoxChange: ChangeEventHandler<HTMLInputElement>;
+  location: string;
+  handleLocationChange: ChangeEventHandler<HTMLSelectElement>;
 }
 
 const SearchBar = ({ searchQuery, handleFilterTextChange, 
@@ -35,7 +37,8 @@ const SearchBar = ({ searchQuery, handleFilterTextChange,
   hasPods, handlePodsCheckBoxChange,
   hasCorridors, handleCorridorsCheckBoxChange,
   hasElevators, handleElevatorsCheckBoxChange,
-  hasDining, handleDiningCheckBoxChange}: Props) => {
+  hasDining, handleDiningCheckBoxChange,
+  location, handleLocationChange}: Props) => {
   return (
     <div>
     <input
@@ -117,6 +120,17 @@ const SearchBar = ({ searchQuery, handleFilterTextChange,
     />
     Dining
     </p>
+    <div>
+        <span>{"Campus:\n"}
+        <select value = {location} onChange={handleLocationChange}>
+            <option value = ""></option>
+            <option value = "North Campus">North</option>
+            <option value = "South Campus">South</option>
+            <option value = "West Campus">West</option>
+        </select>
+        </span>
+        <br></br>
+    </div>
 
   </div>)
 }

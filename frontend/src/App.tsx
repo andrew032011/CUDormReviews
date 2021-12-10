@@ -33,6 +33,7 @@ export type Filter = {
   hasCorridors: boolean;
   hasElevators: boolean;
   hasDining: boolean;
+  location: string
 }
 
 let searchFilter: Filter = {
@@ -45,7 +46,8 @@ let searchFilter: Filter = {
   hasPods: false,
   hasCorridors: false,
   hasElevators: false,
-  hasDining: false
+  hasDining: false,
+  location: ""
 }
 
 
@@ -64,7 +66,8 @@ function App() {
   const [hasCorridors, setHasCorridors] = useState(false);
   const [hasElevators, setHasElevators] = useState(false);
   const [hasDining, setHasDining] = useState(false);
-  searchFilter = {hasAC, hasSingles, hasDoubles, hasTriples, hasQuads, hasSuites, hasPods, hasCorridors, hasElevators, hasDining}
+  const [location, setLocation] = useState("");
+  searchFilter = {hasAC, hasSingles, hasDoubles, hasTriples, hasQuads, hasSuites, hasPods, hasCorridors, hasElevators, hasDining, location}
 
   return (
     <div className="App">
@@ -93,7 +96,9 @@ function App() {
           handleElevatorsCheckBoxChange={(e) => setHasElevators(e.target.checked)}
           hasDining = {hasDining}
           handleDiningCheckBoxChange={(e) => setHasDining(e.target.checked)}
-        />
+          location = {location}
+          handleLocationChange={(e) => setLocation(e.currentTarget.value)}
+          />
         <HomePage
           searchQuery={searchQuery}
           handleClick={setDormName}

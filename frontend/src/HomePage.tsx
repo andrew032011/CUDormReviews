@@ -25,7 +25,8 @@ const HomePage = ({ searchQuery, handleClick, searchFilter }: Props) => {
         (!searchFilter.hasPods || x.pods) &&
         (!searchFilter.hasCorridors || x.corridors) &&
         (!searchFilter.hasElevators || x.elevators) &&
-        (!searchFilter.hasDining || x.dining) 
+        (!searchFilter.hasDining || x.dining) &&
+        (searchFilter.location == "" || searchFilter.location == x.location)
         ).map((data: Dorm) => (
           <input type="button" value={data.name} onClick={(event) => {
             handleClick(data.name);
