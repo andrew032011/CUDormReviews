@@ -1,4 +1,4 @@
-import { Checkbox, Box } from "@mui/material";
+import { Checkbox, Box, FormControl, MenuItem, Select, InputLabel, SelectChangeEvent } from "@mui/material";
 import { ChangeEventHandler } from 'react';
 import styles from './App.module.css';
 type Props = {
@@ -23,7 +23,7 @@ type Props = {
     hasDining: boolean;
     handleDiningCheckBoxChange: ChangeEventHandler<HTMLInputElement>;
     location: string;
-    handleLocationChange: ChangeEventHandler<HTMLSelectElement>;
+    handleLocationChange: (e:SelectChangeEvent<string>) => void;
   }
 
   const Checkboxes = ({ 
@@ -121,14 +121,21 @@ type Props = {
         </div>
 
         <div>
-        <span>{"Campus:\n"}
-        <select value = {location} onChange={handleLocationChange}>
-            <option value = ""></option>
-            <option value = "North Campus">North</option>
-            <option value = "South Campus">South</option>
-            <option value = "West Campus">West</option>
-        </select>
-        </span>
+        <FormControl fullWidth sx={{marginTop: 1 }}>
+          <InputLabel id="campus-label">Campus</InputLabel>
+            <Select
+              labelId="campus-label"
+              id="campus-selector"
+              value={location}
+              label="Campus"
+              onChange={handleLocationChange}
+            >
+              <MenuItem value="North Campus">North</MenuItem>
+              <MenuItem value="South Campus">South</MenuItem>
+              <MenuItem value="West Campus">West</MenuItem>
+              <MenuItem value="">Clear Selection</MenuItem>
+          </Select>
+        </FormControl>
         <br></br>
     </div>
         </div>

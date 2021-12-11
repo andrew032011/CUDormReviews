@@ -80,3 +80,77 @@
       font-weight: bold;
   }
 
+  .text {
+      font-size: 20px;
+  }
+
+  .generalinfo {
+      display: inline;
+      float:left;;
+      min-height: 500px;
+      min-width: 300px;
+  }
+
+  .roominfo {
+      display: inline;
+      float:left;
+      min-height: 500px;
+      min-width: 300px;
+  }
+
+  .dormpage {
+      width: 90%;
+  }
+
+  .reviews {
+    clear:both;
+  }
+
+  .review {
+    float:left;
+  }
+
+  .generaltitle {
+      border-bottom-style: solid;
+      border-bottom-width: 2px;
+      border-bottom-color:gray;
+  }
+
+  .image {
+      max-height:300px;
+      max-width:300px;
+  }
+  
+  .imagediv {
+    height:300px;
+    width:300px;
+    float:left;
+  }
+
+  .reviewsummary {
+    display:flex;
+    flex-direction: row;
+    justify-content: center; 
+    align-items: center;
+    min-height: 100px;
+    float:right;
+    border-style: solid;
+    border-width: 3px;
+    border-color:rgb(0,120,205);
+    border-radius:10px;
+  }
+
+  .summarycategory {
+     margin:30px;
+     padding-bottom:10px;
+  }
+
+  .summarynumber {
+      font-weight: bold;
+      font-size: 40pt;
+      padding-top:25px;
+  }
+
+  .dormtitle {
+      margin-bottom:100px;
+  }

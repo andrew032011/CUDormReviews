@@ -3,7 +3,9 @@ import { DormMap, ReviewWithID } from './App'
 import ReviewComponent from './ReviewComponent'
 import { getAuth } from "firebase/auth"
 import CreateReview from './CreateReview';
-
+import { Box, TableContainer, Table, TableRow, TableCell, Paper, Card, CardContent, CardActions, Link, Button, CardHeader } from '@mui/material';
+import styles from './App.module.css';
+import { textAlign } from '@mui/system';
 // This component will simply take in the name of the dorm that the user clicked on to display information about the dorm.
 // This component will also take in the overall reviews for the dorm
 
@@ -34,34 +36,123 @@ const DormPage = ({ reviews, dormName, setReview }: Props) => {
     <div>
       {dormName.length > 0 ?
         <div>
-          <h2>{DormMap.get(dormName)?.name}</h2>
-          <h4>{DormMap.get(dormName)?.location}</h4>
-          <img src={DormMap.get(dormName)?.picLink} alt={DormMap.get(dormName)?.name}></img>
-          <p>Number of Residents: {DormMap.get(dormName)?.residents}</p>
-          <p>Has Singles: {DormMap.get(dormName)?.singles ? "Yes" : "No"}</p>
-          <p>Has Doubles: {DormMap.get(dormName)?.doubles ? "Yes" : "No"}</p>
-          <p>Has Triples: {DormMap.get(dormName)?.triples ? "Yes" : "No"}</p>
-          <p>Has Quads: {DormMap.get(dormName)?.quads ? "Yes" : "No"}</p>
-          <p>Rooms arranged in Suites: {DormMap.get(dormName)?.suites ? "Yes" : "No"}</p>
-          <p>Rooms arranged in Pods: {DormMap.get(dormName)?.pods ? "Yes" : "No"}</p>
-          <p>Rooms arranged along Corridors: {DormMap.get(dormName)?.corridors ? "Yes" : "No"}</p>
-          <p>Has AC: {DormMap.get(dormName)?.ac ? "Yes" : "No"}</p>
-          <p>Has Elevators: {DormMap.get(dormName)?.elevators ? "Yes" : "No"}</p>
-          <p>Has a Dining Hall: {DormMap.get(dormName)?.dining ? "Yes" : "No"}</p>
-          <a href={DormMap.get(dormName)?.housingWebsite}>Read more on the Housing webpage</a>
+          <h2 className = {styles.dormtitle}>{DormMap.get(dormName)?.name}</h2>
+          <div className = {styles.imagediv}>
+            <img src={DormMap.get(dormName)?.picLink} alt={DormMap.get(dormName)?.name} className = {styles.image}></img>
+          </div>
+          <Box className = {styles.reviewsummary}>
+            <div >
+              <div className = {styles.summarynumber}> {(reviews.reduce((sum, curr) => sum + parseInt(curr.social), 0) / reviews.length).toFixed(1)}</div>
+              <div className = {styles.summarycategory}>Social Life</div>
+            </div>
+            <div>
+              <div className = {styles.summarynumber}>  {(reviews.reduce((sum, curr) => sum + parseInt(curr.convenience), 0) / reviews.length).toFixed(1)}</div>
+              <div className = {styles.summarycategory}>Convenience</div>
+            </div>
+            <div>
+              <div className = {styles.summarynumber}>  {(reviews.reduce((sum, curr) => sum + parseInt(curr.cleanliness), 0) / reviews.length).toFixed(1)}</div>
+              <div className = {styles.summarycategory}>Cleanliness</div>
+            </div>
+            <div>
+              <div className = {styles.summarynumber}>  {(reviews.reduce((sum, curr) => sum + parseInt(curr.noise), 0) / reviews.length).toFixed(1)}</div>
+              <div className = {styles.summarycategory}>Quietness</div>
+            </div>
+            <div>
+              <div className = {styles.summarynumber}>  {(reviews.reduce((sum, curr) => sum + parseInt(curr.lounges), 0) / reviews.length).toFixed(1)}</div>
+              <div className = {styles.summarycategory}>Lounges</div>
+            </div>
+            <div>
+              <div className = {styles.summarynumber}>  {(reviews.reduce((sum, curr) => sum + parseInt(curr.quality), 0) / reviews.length).toFixed(1)}</div>
+              <div className = {styles.summarycategory}>Quality</div>
+            </div>
+          </Box>
+          <div>
+          <div className= {styles.generalinfo}>
+            <Card variant="outlined">
+              <CardHeader title="General Information"></CardHeader>
+              <CardContent>
+                <TableContainer component={Paper}>
+                  <Table>
+                    <TableRow>
+                      <TableCell variant="head">Location</TableCell>
+                      <TableCell>{DormMap.get(dormName)?.location}</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell variant="head">Residents</TableCell>
+                      <TableCell>{DormMap.get(dormName)?.residents}</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell variant="head">AC</TableCell>
+                      <TableCell>{DormMap.get(dormName)?.ac ? "Yes" : "No"}</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell variant="head">Elevators</TableCell>
+                      <TableCell>{DormMap.get(dormName)?.elevators ? "Yes" : "No"}</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell variant="head">Dining Hall</TableCell>
+                      <TableCell>{DormMap.get(dormName)?.dining ? "Yes" : "No"}</TableCell>
+                    </TableRow>
+                  </Table>
+                </TableContainer>
+                <CardActions sx={{justifyContent:'center'}}>
+                  <Button href={DormMap.get(dormName)?.housingWebsite} size="small" >{DormMap.get(dormName)?.name} Housing Webpage</Button>
+                </CardActions>
+              </CardContent>
+            </Card>
+          </div>
+          <div className= {styles.roominfo}>
+            <TableContainer component={Paper}>
+              <Table>
+                <TableRow>
+                  <TableCell variant="head">Singles</TableCell>
+                  <TableCell>{DormMap.get(dormName)?.singles ? "Yes" : "No"}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell variant="head">Doubles</TableCell>
+                  <TableCell>{DormMap.get(dormName)?.doubles ? "Yes" : "No"}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell variant="head">Triples</TableCell>
+                  <TableCell>{DormMap.get(dormName)?.triples ? "Yes" : "No"}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell variant="head">Quads</TableCell>
+                  <TableCell>{DormMap.get(dormName)?.quads ? "Yes" : "No"}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell variant="head">Suites</TableCell>
+                  <TableCell>{DormMap.get(dormName)?.suites ? "Yes" : "No"}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell variant="head">Pods</TableCell>
+                  <TableCell>{DormMap.get(dormName)?.pods ? "Yes" : "No"}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell variant="head">Corridors</TableCell>
+                  <TableCell>{DormMap.get(dormName)?.corridors ? "Yes" : "No"}</TableCell>
+                </TableRow>
+              </Table>
+            </TableContainer>
+          </div>
+          </div>
+          <div className={styles.review}>
+          {dormName.length > 0 ? 
+              <CreateReview
+              dormName={dormName}
+              reviews={reviews}
+              setReviews={setReview}
+              //uid={uid}
+            /> : <h3></h3>
+            }
+        </div>
+          <div className = {styles.reviews}>
 
-          <p>Social Life: {(reviews.reduce((sum, curr) => sum + parseInt(curr.social), 0) / reviews.length).toFixed(1)}</p>
-          <p>Convenience: {(reviews.reduce((sum, curr) => sum + parseInt(curr.convenience), 0) / reviews.length).toFixed(1)}</p>
-          <p>Cleanliness: {(reviews.reduce((sum, curr) => sum + parseInt(curr.cleanliness), 0) / reviews.length).toFixed(1)}</p>
-          <p>Quietness: {(reviews.reduce((sum, curr) => sum + parseInt(curr.noise), 0) / reviews.length).toFixed(1)}</p>
-          <p>Lounges: {(reviews.reduce((sum, curr) => sum + parseInt(curr.lounges), 0) / reviews.length).toFixed(1)}</p>
-          <p>Quality/Appearance: {(reviews.reduce((sum, curr) => sum + parseInt(curr.quality), 0) / reviews.length).toFixed(1)}</p>
+          </div>
           {reviews.length > 0 ?
             reviews.map((review, idx) => (
               <ReviewComponent key={idx} {...review} localUserID={uid()} dormName={dormName} reviews={reviews} setReviews={setReview}/>
           )) : <h4>No Reviews for {dormName} :(<br></br>Be the first to add a review</h4>}
-
-
         </div> : <p></p>}
     </div>
   )

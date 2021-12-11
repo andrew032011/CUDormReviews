@@ -3,6 +3,7 @@ import { getAuth } from 'firebase/auth';
 import { Stats } from 'fs';
 import { ReviewWithID } from './App';
 import styles from './ReviewStyle.module.css';
+import { Box } from '@mui/material';
 
 type Prop = {
     cleanliness: string;
@@ -36,8 +37,40 @@ const ReviewComponent = ({ cleanliness, convenience, lounges, noise, quality, so
     let overallRating: Number = Number(((parseInt(cleanliness) + parseInt(convenience) + parseInt(lounges) + parseInt(noise) + parseInt(quality) + parseInt(social)) / 6).toFixed(1))
     return (
         <div>
+            {/* <Box>
+                <Box className = {styles.reviewsummary}>
+                    <div className={styles.reviewcategory}>
+                        <div >Social Life</div>
+                        <div className={styles.categoryvalue}>{social}</div>
+                    </div>
+                    <div className={styles.reviewcategory}>
+                        <div>Convenience</div>
+                        <div className={styles.categoryvalue}>{convenience}</div>
+                    </div>
+                    <div className={styles.reviewcategory}>
+                        <div>Cleanliness</div>
+                        <div className={styles.categoryvalue}>{cleanliness}</div>
+                    </div>
+                    <div className={styles.reviewcategory}>
+                        <div>Quietness</div>
+                        <div className={styles.categoryvalue}>{noise}</div>
+                    </div>
+                    <div className={styles.reviewcategory}>
+                        <div>Lounges</div>
+                        <div className={styles.categoryvalue}>{lounges}</div>
+                    </div>
+                    <div className={styles.reviewcategory}>
+                        <div>Quality</div>
+                        <div className={styles.categoryvalue}>{quality}</div>
+                    </div>
+                </Box>
+                <div className={styles.year}>
+                        <div>Year Stayed</div>
+                        <div>{year}</div>
+                </div>
+            </Box> */}
             <p className={styles.review} style={{ borderColor: (overallRating >= 4 ? "#00ff00" : overallRating >= 2 ? "#FEDE00" : "#f50c0c") }}>
-                <h3>Overall Quality: {overallRating}/5</h3>
+                <h3>Overall Rating: {overallRating}/5</h3>
                 {'Year Stayed: ' + year}<br></br><br></br>
                 {'Social Life: ' + social}<br></br>
                 {'Convenience: ' + convenience}<br></br>
@@ -51,8 +84,6 @@ const ReviewComponent = ({ cleanliness, convenience, lounges, noise, quality, so
                 deleteReview(dormName);
             }} /> : <p>{/*localUserID + "   /   " + userID*/}</p>}
                 </p>
-            
-
         </div>
     )
 }

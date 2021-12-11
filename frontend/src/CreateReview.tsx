@@ -3,6 +3,9 @@ import axios from "axios";
 import styles from './createreview.module.css';
 import { getAuth } from 'firebase/auth';
 import { ReviewWithID } from './App';
+import { Typography, Rating, Button, TextField } from '@mui/material';
+import { alignProperty } from '@mui/material/styles/cssUtils';
+import { borderRight } from '@mui/system';
 // import ReviewButtonSet from './ReviewButtonSet';
 
 type Prop = {
@@ -30,36 +33,6 @@ const CreateReview = ({dormName, reviews, setReviews}: Prop) => {
       const y = event.currentTarget.value;
       setYear(y);
     };
-
-    const handleSocialChange = (event: ChangeEvent<HTMLSelectElement>) => {
-        const s = event.currentTarget.value;
-        setSocial(s);
-    };
-
-    const handleConvenienceChange = (event: ChangeEvent<HTMLSelectElement>) => {
-        const c = event.currentTarget.value;
-        setConvenience(c);
-    };
-
-    const handleCleanlinessChange = (event: ChangeEvent<HTMLSelectElement>) => {
-        const c = event.currentTarget.value;
-        setCleanliness(c);
-    };
-
-    const handleNoiseChange = (event: ChangeEvent<HTMLSelectElement>) => {
-        const n = event.currentTarget.value;
-        setNoise(n);
-    };
-
-    const handleLoungesChange = (event: ChangeEvent<HTMLSelectElement>) => {
-        const l = event.currentTarget.value;
-        setLounges(l);
-    };
-
-    const handleQualityChange = (event: ChangeEvent<HTMLSelectElement>) => {
-        const q = event.currentTarget.value;
-        setQuality(q);
-    };
     
     // Creates new review in database in current dorm's collection with post request 
     const createReview = async (dormName: string) => {
@@ -76,54 +49,64 @@ const CreateReview = ({dormName, reviews, setReviews}: Prop) => {
     };
    
     // Creates a drop down menu for a given review category
-    const dropDown = (title: string, category: string, name: string, change: (event: ChangeEvent<HTMLSelectElement>) => void ) => {
+    const rating = (title: string, category: string, name: string, setter: (event: string) => void ) => {
         return (
-        <div>
-        <span>{title}
-        <select value = {category} onChange={change}>
-            <option value = "1">1 - Least {name}</option>
-            <option value = "2">2</option>
-            <option value = "3">3</option>
-            <option value = "4">4</option>
-            <option value = "5">5 - Most {name}</option>
-        </select>
-        </span>
-        <br></br>
+            <div className = {styles.category}>{title}
+            <Rating className= {styles.stars}
+                name="simple-controlled"
+                value={parseInt(category)}
+                onChange={(event, newValue) => {
+                    setter(newValue?.toString()!);
+            }}
+            />
         </div>);
+        // <div>
+        // <span>{title}
+        // <select value = {category} onChange={change}>
+        //     <option value = "1">1 - Least {name}</option>
+        //     <option value = "2">2</option>
+        //     <option value = "3">3</option>
+        //     <option value = "4">4</option>
+        //     <option value = "5">5 - Most {name}</option>
+        // </select>
+        // </span>
+        // <br></br>
+        // </div>);
     };
 
     return (
     <div className = {styles.createreview}>
-        <h3>Leave a Review</h3>
-        <textarea
+        <span className={styles.title}>Leave a Review</span>
+        <TextField
+            multiline
+            rows={4}
             placeholder="Enter review here..."
             value={review}
             onChange={handleReviewChange}
             className = {styles.textbox}
         />
-        <br></br>
-        <span>Year Stayed &emsp;
-        <input
-            type="text"
-            value={year}
-            onChange={handleYearChange}
-            
-        />
-        </span>
+        
+        <div className={styles.year}>Year Stayed
+                <TextField variant="standard" sx={{width:115, marginLeft: 10}}
+                    value={year}
+                    onChange={handleYearChange} 
+                />
+        </div>
+        
            
-        {dropDown("Social Life", social, "social", handleSocialChange)}
+        {rating("Social Life", social, "social", setSocial)}
 
-        {dropDown("Convenience", convenience, "convenient", handleConvenienceChange)}
+        {rating("Convenience", convenience, "convenient", setConvenience)}
 
-        {dropDown("Cleanliness", cleanliness, "clean", handleCleanlinessChange)}
+        {rating("Cleanliness", cleanliness, "clean", setCleanliness)}
 
-        {dropDown("Quietness", noise, "quiet", handleNoiseChange)}
+        {rating("Quietness", noise, "quiet", setNoise)}
 
-        {dropDown("Lounges", lounges, "lounge space", handleLoungesChange)}
+        {rating("Lounges", lounges, "lounge space", setLounges)}
 
-        {dropDown("Quality/Appearance", quality, "quality", handleQualityChange)}
+        {rating("Quality", quality, "quality", setQuality)}
 
-        <button onClick={() => {
+        <Button className = {styles.submit} sx= {{marginTop: 3}}variant="contained" onClick={() => {
             console.log(social)
             console.log(convenience)
             console.log(cleanliness)
@@ -143,7 +126,7 @@ const CreateReview = ({dormName, reviews, setReviews}: Prop) => {
             setQuality("1")
             }}>
             Submit
-        </button>
+        </Button>
     </div>)}
     
 export default CreateReview;

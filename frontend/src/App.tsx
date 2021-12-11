@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, ChangeEvent } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import SearchBar from './SearchBar';
@@ -10,6 +10,7 @@ import CreateReview from './CreateReview';
 import Checkboxes from './Checkbox';
 import "@fontsource/roboto";
 import styles from './App.module.css';
+import { SelectChangeEvent } from '@mui/material';
 
 // To be used by other files
 export type ReviewWithID = {
@@ -108,7 +109,7 @@ function App() {
           hasDining = {hasDining}
           handleDiningCheckBoxChange={(e) => setHasDining(e.target.checked)}
           location = {location}
-          handleLocationChange={(e) => setLocation(e.currentTarget.value)}
+          handleLocationChange={(e:SelectChangeEvent<string>) => setLocation(e.target.value)}
         />
         <div className = {styles.dormLabels}>
         <HomePage
@@ -118,24 +119,15 @@ function App() {
         />
         </div>
         </div>
+        <div className = {styles.dormpage}>
         <DormPage
           dormName={dormName}
           reviews={reviews}
           setReview={setReview}
           //uid={uid}
         />
-        <Authenticated dormName={dormName} setReview={setReview} >
-          {dormName.length > 0 ? 
-            <CreateReview
-            dormName={dormName}
-            reviews={reviews}
-            setReviews={setReview}
-            //uid={uid}
-          /> : <h3></h3>
-          }
-          </Authenticated>
-          
-        
+        </div>
+        <Authenticated dormName={dormName} setReview={setReview} > </Authenticated>
       </header>
     </div>
   );
