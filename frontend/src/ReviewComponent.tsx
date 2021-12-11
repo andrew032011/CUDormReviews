@@ -3,7 +3,8 @@ import { getAuth } from 'firebase/auth';
 import { Stats } from 'fs';
 import { ReviewWithID } from './App';
 import styles from './ReviewStyle.module.css';
-import { Box } from '@mui/material';
+import { Box, Button } from '@mui/material';
+import { red } from '@mui/material/colors';
 
 type Prop = {
     cleanliness: string;
@@ -36,8 +37,8 @@ const ReviewComponent = ({ cleanliness, convenience, lounges, noise, quality, so
 
     let overallRating: Number = Number(((parseInt(cleanliness) + parseInt(convenience) + parseInt(lounges) + parseInt(noise) + parseInt(quality) + parseInt(social)) / 6).toFixed(1))
     return (
-        <div>
-            {/* <Box>
+        <div style={{ borderColor: (overallRating >= 4 ? "#00ff00" : overallRating >= 2 ? "#FEDE00" : "#f50c0c")}} className = {styles.reviewbox}>
+            <Box >
                 <Box className = {styles.reviewsummary}>
                     <div className={styles.reviewcategory}>
                         <div >Social Life</div>
@@ -64,26 +65,20 @@ const ReviewComponent = ({ cleanliness, convenience, lounges, noise, quality, so
                         <div className={styles.categoryvalue}>{quality}</div>
                     </div>
                 </Box>
-                <div className={styles.year}>
-                        <div>Year Stayed</div>
-                        <div>{year}</div>
-                </div>
-            </Box> */}
-            <p className={styles.review} style={{ borderColor: (overallRating >= 4 ? "#00ff00" : overallRating >= 2 ? "#FEDE00" : "#f50c0c") }}>
-                <h3>Overall Rating: {overallRating}/5</h3>
-                {'Year Stayed: ' + year}<br></br><br></br>
-                {'Social Life: ' + social}<br></br>
-                {'Convenience: ' + convenience}<br></br>
-                {'Cleanliness: ' + cleanliness}<br></br>
-                {'Quietness: ' + noise}<br></br>
-                {'Lounges: ' + lounges}<br></br>
-                {'Quality/Appearance: ' + quality}<br></br><br></br>
+                <Box className = {styles.reviewandyear}>
+                    <div className = {styles.comments}>
+                        {review}
 
-                <b>{'Comments: '}</b>{review}<br></br>
-                {localUserID === userID ? <input type="button" value={"Delete Review"} onClick={(event) => {
-                deleteReview(dormName);
-            }} /> : <p>{/*localUserID + "   /   " + userID*/}</p>}
-                </p>
+                    </div>
+                    <div className={styles.year}>
+                            <div>Year Stayed: &nbsp;</div>
+                            <div>{year!= "" ? year: "N/A"}</div>
+                            {localUserID === userID ? <Button sx={{marginLeft: 42}} variant="contained" onClick={(event) => {
+                            deleteReview(dormName);
+                            }}>Delete Review</Button>: <p>{/*localUserID + "   /   " + userID*/}</p>}
+                    </div>
+                </Box>
+            </Box>
         </div>
     )
 }

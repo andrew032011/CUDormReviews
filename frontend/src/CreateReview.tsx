@@ -3,18 +3,19 @@ import axios from "axios";
 import styles from './createreview.module.css';
 import { getAuth } from 'firebase/auth';
 import { ReviewWithID } from './App';
-import { Typography, Rating, Button, TextField } from '@mui/material';
+import { Typography, Rating, Button, TextField, Card, Alert } from '@mui/material';
 import { alignProperty } from '@mui/material/styles/cssUtils';
 import { borderRight } from '@mui/system';
 // import ReviewButtonSet from './ReviewButtonSet';
 
 type Prop = {
+    userID: string
     dormName: string
     readonly reviews: ReviewWithID[];
     readonly setReviews: (t: ReviewWithID[]) => void;
 }
 
-const CreateReview = ({dormName, reviews, setReviews}: Prop) => {
+const CreateReview = ({userID, dormName, reviews, setReviews}: Prop) => {
     const [review, setReview] = useState('');
     const [year, setYear] = useState('');
     const [social, setSocial] = useState("1");
@@ -75,7 +76,7 @@ const CreateReview = ({dormName, reviews, setReviews}: Prop) => {
     };
 
     return (
-    <div className = {styles.createreview}>
+    <Card className = {styles.createreview}>
         <span className={styles.title}>Leave a Review</span>
         <TextField
             multiline
@@ -114,19 +115,25 @@ const CreateReview = ({dormName, reviews, setReviews}: Prop) => {
             console.log(lounges)
             console.log(quality)
 
-            createReview(dormName);
+            if(userID !== "") {
+                createReview(dormName);
 
-            setReview("");
-            setYear("");
-            setSocial("1");
-            setConvenience("1");
-            setCleanliness("1");
-            setNoise("1");
-            setLounges("1");
-            setQuality("1")
+                setReview("");
+                setYear("");
+                setSocial("1");
+                setConvenience("1");
+                setCleanliness("1");
+                setNoise("1");
+                setLounges("1");
+                setQuality("1")
+            }
+            else {
+                alert("You need to sign in before submitting a review!")
+            }
+
             }}>
             Submit
         </Button>
-    </div>)}
+    </Card>)}
     
 export default CreateReview;

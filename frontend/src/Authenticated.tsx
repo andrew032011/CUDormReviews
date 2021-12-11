@@ -60,7 +60,7 @@ const Authenticated = ({ children, dormName, setReview }: Props) => {
       {user ? (
         <>
           <h4>Hi, {user.displayName}!</h4>
-          <Button variant="contained" onClick={() =>
+          <Button className = {styles.signout} sx={{marginBottom:10}} variant="contained" onClick={() =>
           {signOut(auth)
             //window.location.reload();
           }}>Sign Out</Button>
