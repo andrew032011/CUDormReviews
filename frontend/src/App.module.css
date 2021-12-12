@@ -168,9 +168,8 @@
   .reviewlist {
       overflow: scroll;
       height: 650px;
-      width: 60%;
+      width: 1200px;
       float:right;
-      /* margin-left: 50px; */
   }
 
   .space {
