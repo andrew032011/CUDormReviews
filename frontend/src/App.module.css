@@ -110,6 +110,8 @@
 
   .review {
     float:left;
+    display:flex; 
+    flex-direction:row;
   }
 
   .generaltitle {
@@ -120,13 +122,13 @@
 
 
   .image {
-      max-height:300px;
-      max-width:300px;
+      max-height:400px;
+      max-width:400px;
   }
   
   .imagediv {
-    height:300px;
-    width:300px;
+    height:400px;
+    width:400px;
     float:left;
     margin-left:20px;
   }
@@ -136,13 +138,13 @@
     flex-direction: row;
     justify-content: center; 
     align-items: center;
-    min-height: 100px;
+    min-height: 50px;
     float:right;
     border-style: solid;
     border-width: 1px;
     border-color: gray;
     border-radius:10px;
-    margin-bottom:100px;
+    margin-bottom:50px;
   }
 
   .summarycategory {
@@ -157,24 +159,25 @@
   }
 
   .dormtitle {
-      margin-bottom:100px;
+      margin-bottom:50px;
       text-align: left;
       width:100%;
       float:right;
-      font-size:100pt;
-      font-weight:normal;
+      font-size:40pt;
+      font-weight:bold;
   }
 
   .reviewlist {
+      clear: both;
       overflow: scroll;
       height: 650px;
-      width: 1200px;
-      float:right;
+      width: 1100px;
+      float:left;
   }
 
   .space {
       float:left;
-      margin-left: 500px;
+      margin-left: 200px;
   }
 
   .signout {

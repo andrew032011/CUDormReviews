@@ -123,13 +123,14 @@ const DormPage = ({ reviews, dormName, setReview }: Props) => {
               //uid={uid}
             /> : <h3></h3>
             }
-        </div>
-          {reviews.length > 0 ?
+                      {reviews.length > 0 ?
             <div className = {styles.reviewlist}>
             {reviews.map((review, idx) => (
               <ReviewComponent key={idx} {...review} localUserID={uid()} dormName={dormName} reviews={reviews} setReviews={setReview}/>))}
               </div>
            : <h4 className = {styles.space}>No reviews for {dormName} :(<br></br>Be the first to add a review!</h4>}
+          </div>
+
         </div> : <p></p>}
     </div>
   )
