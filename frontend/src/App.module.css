@@ -88,8 +88,6 @@
   .generalinfo {
       display: inline;
       float:right;
-      min-height: 300px;
-      min-width: 1170px;
       margin-bottom:50px
   }
 
