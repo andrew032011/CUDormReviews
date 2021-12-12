@@ -8,6 +8,8 @@ Deployed Project Link: https://cudormreviews.herokuapp.com/ (takes a few mins to
 
 Github Link: https://github.com/andrew032011/cudormreviews
 
+Known issue: Pressing the delete key right after adding a review deletes locally, but not on the Firebase server.  You must reload the page before pressing the delete key for this to work.  We tried very hard to fix this, but we don't know how to "know" what the randomly-generated Firebase postID is without it being created first, so we can't call the delete function on an unknown ID key.  The obvious solution would be to refresh the page immediately after adding the review, but this creates race conditions that we cannot figure out how to solve. 
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
